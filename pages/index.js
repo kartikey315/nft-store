@@ -16,7 +16,7 @@ export default function Home() {
     loadNFTs()
   }, [])
   async function loadNFTs() {
-    const provider = new ethers.providers.JsonRpcProvider("https://rpc-mumbai.maticvigil.com")
+    const provider = new ethers.providers.JsonRpcProvider()
     const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace.abi, provider)
     const data = await contract.fetchMarketItems()
 
@@ -66,11 +66,11 @@ export default function Home() {
     <main>
     <div className="bg-neutral-900 flex justify-center">
      <div className='px-4' style={{maxwidth: '1600px'}}>
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4'>
+      <div className='col-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4'>
         {
           nfts.map((nft, i) => (
             <div key={i} className="border shadow rounded-xl overflow-hidden">
-              <img src={nft.image} />
+              <img src={nft.image} height="100" width="250"/>
               <div className='p-4'>
                 <p style={{height: '64px'}} className='text-2xl text-white font-semibold'>
                   {nft.name}

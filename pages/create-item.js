@@ -44,6 +44,7 @@ export default function CreateItem() {
           const added = await client.add(data)
           const url = `https://ipfs.infura.io/ipfs/${added.path}`
           /* after file is uploaded to IPFS, return the URL to use it in the transaction */
+          console.log(url)
           return url
         } catch (error) {
           console.log('Error uploading file: ', error)
@@ -63,7 +64,7 @@ export default function CreateItem() {
         listingPrice = listingPrice.toString()
         let transaction = await contract.createToken(url, price, { value: listingPrice })
         await transaction.wait()
-       
+        
         router.push('/')
       }
 
